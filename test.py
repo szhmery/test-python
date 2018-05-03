@@ -1,4 +1,5 @@
-# -*-coding:utf-8-*-
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 def foo(x):
     print "executing foo(%s)"%(x)
 
@@ -330,3 +331,132 @@ for counter, value in enumerate(some_list):
 my_list = ['apple', 'banana', 'grapes', 'pear']
 counter_list = list(enumerate(my_list, 1))
 print(counter_list)
+
+my_list = [1, 2, 3]
+print dir(my_list)
+print(type(()))
+# <type 'tuple'>
+print(type([]))
+# Output: <type 'list'>
+
+print(type({}))
+# Output: <type 'dict'>
+
+print(type(dict))
+# Output: <type 'type'>
+
+print(type(set()))
+# Output: <type 'set'>
+
+import inspect
+print(inspect.getmembers(str))
+
+
+multiples = [i for i in range(30) if i % 3 is 0]
+print(multiples)
+# Output: [0, 3, 6, 9, 12, 15, 18, 21, 24, 27]
+
+try:
+    print('I am sure no exception is going to occur!')
+except Exception:
+    print('exception')
+else:
+    # 这里的代码只会在try语句里没有触发异常时运行,
+    # 但是这里的异常将 *不会* 被捕获
+    print('This would only run if no exception occurs. And an error here '
+          'would NOT be caught.')
+finally:
+    print('This would be printed in every case.')
+
+a = [(1, 2), (4, 1), (9, 10), (13, -3)]
+a.sort(key=lambda x: x[1])
+
+print(a)
+# Output: [(13, -3), (4, 1), (1, 2), (9, 10)]
+
+list1=[1,5,7]
+list2=[3,5,8]
+data = zip(list1, list2)
+print data
+data = sorted(data)
+list1, list2 = map(lambda t: list(t), zip(*data))
+print map(lambda t: list(t), zip(*data))
+print list1
+print list2
+print data
+
+from pprint import pprint
+
+my_dict = {'name': 'Yasoob', 'age': 'undefined', 'personality': 'awesome'}
+pprint(my_dict)
+
+import itertools
+
+a_list = [[1, 2], [3, 4], [5, 6]]
+print(list(itertools.chain.from_iterable(a_list)))
+# Output: [1, 2, 3, 4, 5, 6]
+
+# or
+print(list(itertools.chain(*a_list)))
+# Output: [1, 2, 3, 4, 5, 6]
+
+class A(object):
+    def __init__(self, a, b, c, d, e, f):
+        self.__dict__.update({k: v for k, v in locals().items() if k != 'self'})
+
+for n in range(2, 10):
+    for x in range(2, n):
+        if n % x == 0:
+            print(n, 'equals', x, '*', n / x)
+            break
+    else:
+        # loop fell through without finding a factor
+        print(n, 'is a prime number')
+
+#from next import next
+
+def grep(pattern):
+    print("Searching for", pattern)
+    while True:
+        line = (yield)
+        if pattern in line:
+            print(line)
+
+
+search = grep('coroutine')
+next(search)
+#output: Searching for coroutine
+search.send("I love you")
+search.send("Don't you love me?")
+search.send("I love coroutine instead!")
+#output: I love coroutine instead!
+
+search.close()
+
+
+from functools import wraps
+
+def memoize(function):
+    memo = {}
+    @wraps(function)
+    def wrapper(*args):
+        if args in memo:
+            return memo[args]
+        else:
+            rv = function(*args)
+            memo[args] = rv
+            return rv
+    return wrapper
+
+@memoize
+def fibonacci(n):
+    if n < 2: return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+print fibonacci(25)
+
+
+nums = [0,0,1,1,1,2,2,3,3,4]
+new_nums = list(set(nums))
+
+print new_nums, len(new_nums)
