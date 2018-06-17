@@ -1,7 +1,5 @@
 # coding=utf-8
-import time
 import threading
-
 
 def profile(func):
     def wrapper(*args, **kwargs):

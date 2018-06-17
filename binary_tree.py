@@ -1,5 +1,6 @@
 # coding=utf-8
 #https://github.com/qiwsir/algorithm/blob/master/binary_tree.md
+
 class Node:
     """
     二叉树左右枝
