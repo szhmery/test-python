@@ -101,3 +101,51 @@ A = np.arange(3,15).reshape((3,4))
 print(A.flatten())
 for item in A.flat:
     print(item)
+
+##section 8
+A = np.array([1, 1, 1])
+B = np.array([2, 2, 2])
+
+print(np.vstack((A, B)))
+
+C = np.vstack((A,B))
+print(A.shape,C.shape)
+
+D = np.hstack((A,B))       # horizontal stack
+
+print(D)
+# [1,1,1,2,2,2]
+
+print(A.shape,D.shape)
+print(A[np.newaxis,:])
+print(A[np.newaxis,:].shape)
+print(A[:,np.newaxis].shape)
+print(A.shape)
+
+A = np.array([1, 1, 1])[:, np.newaxis]
+B = np.array([2, 2, 2])[:, np.newaxis]
+print(A)
+print(B)
+C = np.vstack((A, B))  # vertical stack
+D = np.hstack((A, B))  # horizontal stack
+print(C)
+print(D)
+print(A.shape, D.shape)
+
+C = np.concatenate((A,B,B,A),axis=0)
+print(C)
+D = np.concatenate((A,B,B,A),axis=1)
+
+print(D)
+
+
+##section 9
+A = np.arange(12).reshape((3, 4))
+print(A)
+print(np.split(A, 2, axis=1))
+print(np.split(A, 3, axis=0))
+
+print(np.array_split(A, 3, axis=1))
+print(np.vsplit(A, 3)) #等于 print(np.split(A, 3, axis=0))
+
+print(np.hsplit(A, 2)) #等于 print(np.split(A, 2, axis=1))
